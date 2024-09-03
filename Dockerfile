@@ -6,7 +6,7 @@ ENV GEM_HOME=/opt/canvas/.gems
 ENV GEM_PATH=/opt/canvas/.gems:/opt/canvas/.gem/ruby/3.3.0
 ENV PATH=/opt/canvas/.local/share/gem/ruby/3.3.0/bin:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
-ENV YARN_VERSION 1.19.1-1
+ENV YARN_VERSION=1.19.1-1
 
 # add nodejs and recommended ruby repos
 RUN apt-get update
@@ -14,13 +14,6 @@ RUN apt-get install -y supervisor redis-server sudo \
         zlib1g-dev libxml2-dev libxslt1-dev libsqlite3-dev postgresql \
         postgresql-contrib libpq-dev libxmlsec1-dev curl make g++ git \
         unzip fontforge libicu-dev libidn-dev
-
-# RUN curl -sSL -o apache-pulsar-client-dev.deb https://archive.apache.org/dist/pulsar/pulsar-2.6.1/DEB/apache-pulsar-client-dev.deb \
-#   && curl -sSL -o apache-pulsar-client.deb https://archive.apache.org/dist/pulsar/pulsar-2.6.1/DEB/apache-pulsar-client.deb \
-#   && dpkg -i apache-pulsar-client.deb \
-#   && dpkg -i apache-pulsar-client-dev.deb \
-#   && rm apache-pulsar-client-dev.deb apache-pulsar-client.deb
-
 
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash \
     && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
@@ -36,9 +29,9 @@ RUN apt-get clean && rm -Rf /var/cache/apt
 
 # Set the locale to avoid active_model_serializers bundler install failure
 RUN sudo locale-gen "en_US.UTF-8"
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
 RUN sudo dpkg-reconfigure locales
 
 RUN groupadd -r canvasuser -g 433 && \
