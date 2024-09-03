@@ -28,10 +28,10 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash \
 RUN apt-get clean && rm -Rf /var/cache/apt
 
 # Set the locale to avoid active_model_serializers bundler install failure
-RUN sudo locale-gen "en_US.UTF-8"
-ENV LANG=en_US.UTF-8
-ENV LANGUAGE=en_US:en
-ENV LC_ALL=en_US.UTF-8
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 RUN sudo dpkg-reconfigure locales
 
 RUN groupadd -r canvasuser -g 433 && \
