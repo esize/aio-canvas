@@ -1,3 +1,0 @@
-[submodule "canvas-lms"]
-	path = canvas-lms
-	url = https://github.com/instructure/canvas-lms.git
