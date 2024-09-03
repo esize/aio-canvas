@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-export POSTGRES_BIN=/usr/lib/postgresql/12/bin
+export POSTGRES_BIN=/usr/lib/postgresql/15/bin
 
 sudo -u postgres $POSTGRES_BIN/createuser --superuser canvas
 sudo -u postgres $POSTGRES_BIN/createdb -E UTF-8 -T template0 --lc-collate=en_US.UTF-8 --lc-ctype=en_US.UTF-8 --owner canvas canvas_$RAILS_ENV
